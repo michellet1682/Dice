@@ -1,3 +1,4 @@
+int sum = 0;
 void setup()
 {
   size(300, 350);
@@ -12,14 +13,17 @@ void draw()
       dice.show();
     }
   }
+  fill(0);
+  text("sum: " + sum, 130, 330);
 }
 void mousePressed()
 {
+  sum = 0;
   redraw();
 }
 class Die //models one single dice cube
 {
-  int myX, myY,num, sum;
+  int myX, myY,num;
   
   Die(int x, int y) //constructor
   {
@@ -46,31 +50,35 @@ class Die //models one single dice cube
   void show()
   {
     fill(0);
-    text("sum: " + sum, 130, 330);
     noStroke();
     fill(255);
     rect(myX, myY, 50, 50, 7);
     fill((int)(Math.random()*256),(int)(Math.random()*256),(int)(Math.random()*256));
     if(num == 1){
       ellipse(myX + 25, myY + 25, 10, 10);
+      sum += 1;
     } else if (num == 2){
       ellipse(myX + 15, myY + 15, 10, 10);
       ellipse(myX + 35, myY + 35, 10, 10);
+      sum += 2;
     } else if (num == 3){
       ellipse(myX + 25, myY + 25, 10, 10);
       ellipse(myX + 15, myY + 15, 10, 10);
       ellipse(myX + 35, myY + 35, 10, 10);
+      sum += 3;
     } else if (num == 4){
       ellipse(myX + 15, myY + 15, 10, 10);
       ellipse(myX + 35, myY + 35, 10, 10);
       ellipse(myX + 35, myY + 15, 10, 10);
       ellipse(myX + 15, myY + 35, 10, 10);
+      sum += 4;
     } else if (num == 5){
       ellipse(myX + 15, myY + 15, 10, 10);
       ellipse(myX + 35, myY + 35, 10, 10);
       ellipse(myX + 35, myY + 15, 10, 10);
       ellipse(myX + 15, myY + 35, 10, 10);
       ellipse(myX + 25, myY + 25, 10, 10);
+      sum += 5;
     } else {
       ellipse(myX + 15, myY + 13, 10, 10);
       ellipse(myX + 15, myY + 26, 10, 10);
@@ -78,6 +86,7 @@ class Die //models one single dice cube
       ellipse(myX + 35, myY + 39, 10, 10);
       ellipse(myX + 35, myY + 13, 10, 10);
       ellipse(myX + 35, myY + 26, 10, 10);
+      sum += 6;
     }
   }
 }
